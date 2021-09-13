@@ -14,3 +14,4 @@ Color indigo = Colors.indigoAccent;
 
 const kPrimaryColor = Color.fromRGBO(24, 205, 186, 1.0);
 const kYColor = Color.fromRGBO(229, 203, 15, 1.0);
+const indigoColor = Color.fromRGBO(74, 22, 172, 1.0);

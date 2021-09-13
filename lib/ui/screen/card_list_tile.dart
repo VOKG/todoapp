@@ -18,22 +18,30 @@ class CardListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Card(
-      shadowColor: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
+      child: Container(
+        margin: EdgeInsets.only(left: 5, top: 5, right: 5, bottom: 5),
+        decoration: BoxDecoration(
+            color: Colors.black54,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10)
+            ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
 
-        ),
-      ),
-      color:greenAccent,
-      elevation:0.0,
-      margin: new EdgeInsets.symmetric(
-        horizontal: 5.0,
-        vertical: 5.0,
-      ),
+          ),
+
       child: ListTitleUi(subtitleCard,titleCard,isChecked),
       ),
     );
   }
 }
+
