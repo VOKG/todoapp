@@ -24,11 +24,12 @@ class _DashboardState extends State<Dashboard> {
       decoration: BoxDecoration(
        gradient: LinearGradient(
           colors: [
-            white,
-            indigoColor
+            Colors.black87,
+            Colors.orange,
+            Colors.red,
           ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter
+          begin: Alignment.bottomRight,
+          end: Alignment.center
       )
       ),
      child: Column(
@@ -38,7 +39,10 @@ class _DashboardState extends State<Dashboard> {
 
            child: ListView.separated(
               itemCount: cards.length,
-              separatorBuilder: (context, index) => Divider(),
+              separatorBuilder: (context, index) =>
+                  Divider(
+                    height: 8,
+                  ),
              itemBuilder:(context, index){
                 final itemList = cards[index];
                 return  DismissibleWidget(
@@ -52,6 +56,18 @@ class _DashboardState extends State<Dashboard> {
                 );
              }
             ),
+          ),
+          FloatingActionButton(
+              onPressed: (){
+                cards.add(
+                    CardDetail(
+                title: 'Unit Testing',
+                  subtitle: 'Intermediate',
+                   isChecked:false));
+                      setState(() {}
+                           );
+                      },
+            child: Icon(Icons.add),
           ),
           Expanded(
             flex: 0,
@@ -70,7 +86,6 @@ class _DashboardState extends State<Dashboard> {
                 ElevatedButton(
                   child: Text('Shuffle Cards'),
                   onPressed: () {
-
 
                   setState(() {
 

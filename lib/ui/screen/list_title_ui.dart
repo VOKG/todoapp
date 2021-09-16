@@ -37,18 +37,17 @@ class _ListTitleUi extends State<ListTitleUi> {
       if (states.any(interactiveStates.contains)) {
         return Colors.blue;
       }
-      return Colors.red;
+      return Colors.blueAccent;
     }
     return ListTile(
       contentPadding: EdgeInsets.symmetric(
         horizontal: 1.0,
         vertical: 5.0,
       ),
-      leading: CircleAvatar(
-        backgroundImage:ava,
-        radius: 40,
+      leading:
+     MyAvatar(),
+     // CircleAvatar(backgroundImage:ava, radius: 40,),
 
-      ),
       title: Text(
         title,
         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -56,8 +55,8 @@ class _ListTitleUi extends State<ListTitleUi> {
       subtitle: Row(
         children: [
           Icon(
-            Icons.arrow_downward,
-            color: white,
+            Icons.add,
+            color: green,
           ),
           SizedBox(
             width: 10,
@@ -87,11 +86,43 @@ class _ListTitleUi extends State<ListTitleUi> {
       isThreeLine: true,
       dense: true,
       trailing: Icon(
-        Icons.keyboard_arrow_right,
-        color: Colors.white,
+        Icons.keyboard_arrow_left,
+        color: Colors.red,
         size: 30.0,
       ),
 
     );
   }
+}
+
+class MyAvatar extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) => Container(
+      height: 40,
+      width: 40,
+      margin: EdgeInsets.only(left: 25, top: 1, right: 8, bottom: 1),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(50),
+            topRight: Radius.circular(50),
+            bottomLeft: Radius.circular(50),
+            bottomRight: Radius.circular(50)
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.white70.withOpacity(0.4),
+            spreadRadius: 2,
+            blurRadius: 3,
+            offset: Offset(1, 1), // changes position of shadow
+          ),
+        ],
+
+
+      ),
+      child:CircleAvatar(
+        backgroundImage:ava,
+        radius: 40,
+      ),
+    );
 }

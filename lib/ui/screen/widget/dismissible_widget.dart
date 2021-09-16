@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/res/values/colors.dart';
 
 class DismissibleWidget<T> extends StatelessWidget {
   final T item;
@@ -24,14 +25,26 @@ class DismissibleWidget<T> extends StatelessWidget {
   Widget buildSwipeActionLeft() => Container(
     alignment: Alignment.centerLeft,
     padding: EdgeInsets.symmetric(horizontal: 20),
-    color: Colors.green,
-    child: Icon(Icons.archive_sharp, color: Colors.white, size: 32),
+    color: Colors.white70,
+    child: Icon(Icons.archive_sharp, color: Colors.indigoAccent, size: 32),
   );
 
   Widget buildSwipeActionRight() => Container(
+    decoration: BoxDecoration(
+      color: Colors.white70,
+      borderRadius: BorderRadius.only(
+
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20)
+      ),
+
+    ),
+
     alignment: Alignment.centerRight,
-    padding: EdgeInsets.symmetric(horizontal: 20),
-    color: Colors.red,
-    child: Icon(Icons.delete_forever, color: Colors.white, size: 32),
+    padding:  EdgeInsets.only(left: 25, top: 1, right: 10, bottom: 1),
+
+    child: Icon(Icons.delete_forever, color: Colors.black87, size: 32),
   );
 }

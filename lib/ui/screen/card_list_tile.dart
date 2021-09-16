@@ -19,21 +19,32 @@ class CardListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        margin: EdgeInsets.only(left: 5, top: 5, right: 5, bottom: 5),
+        margin: EdgeInsets.only(left: 10, top: 2, right: 8, bottom: 1),
         decoration: BoxDecoration(
-            color: Colors.black54,
+            //color: Colors.black54,
+
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10)
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(30),
+                bottomLeft: Radius.circular(0),
+                bottomRight: Radius.circular(15)
+            ),
+            gradient: LinearGradient(
+                colors: [
+                  black62Color,
+                  black40Color,
+                  black59Color ,
+
+                ],
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft
             ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
+              color: Colors.black.withOpacity(0.4),
+              spreadRadius: 1,
+              blurRadius: 3,
+              offset: Offset(3, 9), // changes position of shadow
             ),
           ],
 

@@ -10,14 +10,24 @@ SecondScreen({required this.title, required this.subtitle});
   Widget build(BuildContext context) {
     return Scaffold(
       body:Container(
-        color: black,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Colors.black87,
+                  Colors.orange,
+                  Colors.red,
+                ],
+                begin: Alignment.bottomRight,
+                end: Alignment.center
+            )
+        ),
       child: Column(
         children: [
           Center(
             child: Text(
                 title,
                 style: TextStyle(
-                    color: Colors.red,
+                    color: Colors.white70,
                     fontSize: 10
                 )
             ),
@@ -26,7 +36,7 @@ SecondScreen({required this.title, required this.subtitle});
             child: Text(
                 subtitle,
                 style: TextStyle(
-                    color: Colors.red,
+                    color: Colors.white70,
                     fontSize: 10
                 )
             ),
