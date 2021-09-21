@@ -23,28 +23,22 @@ class CardListTile extends StatelessWidget {
         decoration: BoxDecoration(
             //color: Colors.black54,
 
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(15),
-                topRight: Radius.circular(30),
-                bottomLeft: Radius.circular(0),
-                bottomRight: Radius.circular(15)
-            ),
             gradient: LinearGradient(
                 colors: [
-                  black62Color,
-                  black40Color,
-                  black59Color ,
 
+                  Colors.black87,
+                  Colors.black45,
+                  Colors.black87,
                 ],
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft
+                begin: Alignment.center,
+                end: Alignment.bottomRight
             ),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.4),
               spreadRadius: 1,
               blurRadius: 3,
-              offset: Offset(3, 9), // changes position of shadow
+              offset: Offset(2, 9), // changes position of shadow
             ),
           ],
 

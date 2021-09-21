@@ -18,30 +18,33 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: black,
-      body: Container(
+    return  Container(
       decoration: BoxDecoration(
        gradient: LinearGradient(
           colors: [
-            Colors.black87,
-            Colors.orange,
+            Colors.redAccent,
             Colors.red,
+           // Colors.black87,
+           // Colors.orange,
+            //Colors.red,
           ],
-          begin: Alignment.bottomRight,
-          end: Alignment.center
+           begin: Alignment.centerLeft,
+           end: Alignment.center
       )
       ),
      child: Column(
         children: [
+          SizedBox(
+            height: 1,
+          ),
           Expanded(
-            flex: 3,
+            flex: 4,
 
            child: ListView.separated(
               itemCount: cards.length,
               separatorBuilder: (context, index) =>
                   Divider(
-                    height: 8,
+                    height: 2,
                   ),
              itemBuilder:(context, index){
                 final itemList = cards[index];
@@ -83,26 +86,12 @@ class _DashboardState extends State<Dashboard> {
                     setState(() {});
                   },
                 ),
-                ElevatedButton(
-                  child: Text('Shuffle Cards'),
-                  onPressed: () {
 
-                  setState(() {
-
-                  });
-
-
-                    //TODO: Shuffle all cards and change the order of them in the UI
-
-
-                  },
-                )
               ],
             ),
           )
         ],
       ),
-    ),
     );
   }
   void dismissItem(

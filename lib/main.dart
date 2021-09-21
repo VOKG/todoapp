@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/res/values/colors.dart';
 import 'package:todoapp/ui/screen/dashboard.dart';
 import 'package:todoapp/ui/screen/screen_menu.dart';
 
@@ -13,11 +14,26 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
+      theme: ThemeData(),
+      home: Scaffold(
+        appBar: AppBar(
+          elevation: 4,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [
+                      Colors.black87,
 
-        primarySwatch: Colors.red,
+                      Colors.red,
+                    ],
+                    begin: Alignment.bottomRight,
+                    end: Alignment.center
+                )
+            ),
+          ),
+        ),
+        body:  Dashboard(),
       ),
-      home: Dashboard(),
     );
   }
 }
