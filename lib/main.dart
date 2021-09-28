@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/res/values/colors.dart';
-import 'package:todoapp/ui/screen/dashboard.dart';
-import 'package:todoapp/ui/screen/screen_menu.dart';
+import 'package:todoapp/ui/tab_page_controller.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,25 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: Scaffold(
-        appBar: AppBar(
-          elevation: 4,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [
-                      Colors.black87,
-
-                      Colors.red,
-                    ],
-                    begin: Alignment.bottomRight,
-                    end: Alignment.center
-                )
-            ),
-          ),
-        ),
-        body:  Dashboard(),
-      ),
+      home:TabPageController(),
     );
   }
 }

@@ -27,18 +27,6 @@ class _ListTitleUi extends State<ListTitleUi> {
   @override
   Widget build(BuildContext context) {
 
-    Color getColor(Set<MaterialState> states) {
-
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.blueAccent;
-    }
     return ListTile(
       contentPadding: EdgeInsets.symmetric(
         horizontal: 1.0,
@@ -50,13 +38,13 @@ class _ListTitleUi extends State<ListTitleUi> {
 
       title: Text(
         title,
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
       ),
       subtitle: Row(
         children: [
           Icon(
-            Icons.add,
-            color: green,
+            Icons.arrow_drop_down_circle,
+            color: Colors.black38,
           ),
           SizedBox(
             width: 10,
@@ -65,16 +53,7 @@ class _ListTitleUi extends State<ListTitleUi> {
             subtitle,
             style: TextStyle(color: Colors.white),
           ),
-          Checkbox(
-            checkColor: Colors.white,
-              fillColor: MaterialStateProperty.resolveWith(getColor),
-              value: isChecked,
-              onChanged:(bool? value) {
-                           setState(() {
-                            isChecked = value!;
-              });
-            }
-          )
+
         ],
       ),
       onTap: () =>
@@ -87,7 +66,7 @@ class _ListTitleUi extends State<ListTitleUi> {
       dense: true,
       trailing: Icon(
         Icons.keyboard_arrow_left,
-        color: Colors.red,
+        color: Colors.black54,
         size: 30.0,
       ),
 

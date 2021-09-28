@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp/data/Data.dart';
 import 'package:todoapp/model/CardDetail.dart';
-import 'package:todoapp/res/values/colors.dart';
 import 'package:todoapp/ui/screen/widget/Utils.dart';
 import 'package:todoapp/ui/screen/widget/dismissible_widget.dart';
 
@@ -19,19 +18,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      decoration: BoxDecoration(
-       gradient: LinearGradient(
-          colors: [
-            Colors.redAccent,
-            Colors.red,
-           // Colors.black87,
-           // Colors.orange,
-            //Colors.red,
-          ],
-           begin: Alignment.centerLeft,
-           end: Alignment.center
-      )
-      ),
+
      child: Column(
         children: [
           SizedBox(
@@ -39,7 +26,6 @@ class _DashboardState extends State<Dashboard> {
           ),
           Expanded(
             flex: 4,
-
            child: ListView.separated(
               itemCount: cards.length,
               separatorBuilder: (context, index) =>

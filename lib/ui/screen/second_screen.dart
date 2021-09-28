@@ -13,9 +13,8 @@ SecondScreen({required this.title, required this.subtitle});
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  Colors.black87,
-                  Colors.orange,
-                  Colors.red,
+                  Colors.teal,
+                  Colors.lightGreen,
                 ],
                 begin: Alignment.bottomRight,
                 end: Alignment.center
