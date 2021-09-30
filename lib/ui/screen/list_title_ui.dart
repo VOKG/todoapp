@@ -100,7 +100,7 @@ class MyAvatar extends StatelessWidget {
 
       ),
       child:CircleAvatar(
-        backgroundImage:ava,
+        foregroundColor: Colors.black,
         radius: 40,
       ),
     );

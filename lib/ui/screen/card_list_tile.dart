@@ -3,12 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'list_title_ui.dart';
 
-class CardListTile extends StatelessWidget {
+class CardListTitle extends StatelessWidget {
   final String titleCard;
   final String subtitleCard;
  bool isChecked = false;
 
-  CardListTile({required this.titleCard, required this.subtitleCard,
+  CardListTitle({required this.titleCard, required this.subtitleCard,
   required this.isChecked});
 
   @override

@@ -1,6 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:todoapp/data/Card.dart';
+import 'package:todoapp/model/CardDetail.dart';
 import 'package:todoapp/ui/screen/dashboard.dart';
+
+import 'AppBarWidget/my_flexiable_app_bar.dart';
 
 class TabPageController extends StatefulWidget {
    TabPageController({Key? key}) : super(key: key);
@@ -13,6 +17,8 @@ class _TabPageControllerState extends State<TabPageController> with SingleTicker
 
   late TabController _tabController;
   late ScrollController _scrollViewController;
+
+  List<CardDetail> cards = CardData().cards;
 
 
   @override
@@ -43,10 +49,19 @@ class _TabPageControllerState extends State<TabPageController> with SingleTicker
                   SliverAppBar(
                     shadowColor: Colors.black,
                     backgroundColor: Colors.teal,
+                    title: Text('STREAMSOUND'),
+                    leading: IconButton(onPressed: (){}, icon: Icon(Icons.menu)),
+                    actions: [
+                      IconButton(onPressed: (){},
+                          icon: Icon(Icons.access_alarms_rounded)),],
                     forceElevated: innerBoxIsScrolled ,
                     expandedHeight: 120.0,
                     pinned: true,
                     floating: true,
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: MyFlexiableAppBar(),
+                    ) ,
+
               ),
             ];
           },
@@ -62,7 +77,7 @@ class _TabPageControllerState extends State<TabPageController> with SingleTicker
             ) ,
           ),
           bottomNavigationBar:Container(
-           
+
           decoration:BoxDecoration(
             //color: Colors.black54,
             gradient: LinearGradient(
@@ -107,7 +122,19 @@ class _TabPageControllerState extends State<TabPageController> with SingleTicker
               Tab(icon:Icon(Icons.view_list,color: Colors.lightBlue),),
             ],
           ),
-          )
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: (){
+              cards.add(
+                  CardDetail(
+                      title: 'Unit Testing',
+                      subtitle: 'Intermediate',
+                      isChecked:false));
+              setState(() {}
+              );
+            },
+            child: Icon(Icons.add),
+          ),
         ),
         );
   }

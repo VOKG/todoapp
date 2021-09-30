@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/data/Data.dart';
+import 'package:todoapp/data/Card.dart';
 import 'package:todoapp/model/CardDetail.dart';
 import 'package:todoapp/ui/screen/widget/Utils.dart';
 import 'package:todoapp/ui/screen/widget/dismissible_widget.dart';
@@ -13,7 +13,8 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  final List<CardDetail> cards = List.of(Data.listUser);
+  List<CardDetail> cards = CardData().cards;
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,43 +22,30 @@ class _DashboardState extends State<Dashboard> {
 
      child: Column(
         children: [
-          SizedBox(
-            height: 1,
-          ),
+
           Expanded(
             flex: 4,
            child: ListView.separated(
               itemCount: cards.length,
               separatorBuilder: (context, index) =>
                   Divider(
-                    height: 2,
+                    height: 4,
                   ),
              itemBuilder:(context, index){
                 final itemList = cards[index];
                 return  DismissibleWidget(
                   item: itemList,
-                  child:CardListTile(
+                  child:CardListTitle(
                     titleCard: cards[index].title,
                     subtitleCard: cards[index].subtitle,
-                    isChecked: cards[index].isChecked,
+                    isChecked: cards[index].isChecked,// not working
                   ),
                   onDismissed: ( direction) => dismissItem(context, index, direction),
                 );
              }
             ),
           ),
-          FloatingActionButton(
-              onPressed: (){
-                cards.add(
-                    CardDetail(
-                title: 'Unit Testing',
-                  subtitle: 'Intermediate',
-                   isChecked:false));
-                      setState(() {}
-                           );
-                      },
-            child: Icon(Icons.add),
-          ),
+
           Expanded(
             flex: 0,
             child: Row(
