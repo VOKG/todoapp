@@ -44,7 +44,6 @@ class ScreenMenu extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 52,
-            child: imageAva,
 
           ),
 

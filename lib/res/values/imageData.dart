@@ -1,5 +1,5 @@
 
 import 'package:flutter/cupertino.dart';
 
-final Widget imageAva = Image.network('assets/ava.jpeg');
+// Widget imageAva = Image.'assets/ava.jpeg');
 

@@ -4,19 +4,19 @@ import 'package:todoapp/res/values/imageData.dart';
 import 'package:todoapp/ui/screen/second_screen.dart';
 
 
-class ListTitleUi extends StatefulWidget{
-  ListTitleUi(this.subtitleCard,this.titleCard,this.isChecked);
+class CardView extends StatefulWidget{
+  CardView(this.subtitleCard,this.titleCard,this.isChecked);
  late String titleCard;
   late String subtitleCard;
    bool isChecked = false;
 
 
   @override
-  _ListTitleUi createState() => _ListTitleUi(this.titleCard,this.subtitleCard,this.isChecked);
+  _CardView createState() => _CardView(this.titleCard,this.subtitleCard,this.isChecked);
 }
-class _ListTitleUi extends State<ListTitleUi> {
+class _CardView extends State<CardView> {
 
-  _ListTitleUi(this.subtitle,this.title,this.isChecked);
+  _CardView(this.subtitle,this.title,this.isChecked);
 
   late String title;
   late final String subtitle;
@@ -38,7 +38,10 @@ class _ListTitleUi extends State<ListTitleUi> {
 
       title: Text(
         title,
-        style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            color: Colors.black54,
+            fontWeight: FontWeight.bold
+        ),
       ),
       subtitle: Row(
         children: [
@@ -90,7 +93,7 @@ class MyAvatar extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.white70.withOpacity(0.4),
+            color: Colors.black.withOpacity(0.4),
             spreadRadius: 2,
             blurRadius: 3,
             offset: Offset(1, 1), // changes position of shadow
@@ -99,9 +102,18 @@ class MyAvatar extends StatelessWidget {
 
 
       ),
-      child:CircleAvatar(
-        foregroundColor: Colors.black,
-        radius: 40,
+      child:Container(
+        height: 50,
+        width: 50,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          shape:BoxShape.circle,
+          border: Border.all(
+            color:Colors.black,
+            width: 1,
+          )
+        ),
+        child: Image.asset('assets/ava2.jpeg'),
       ),
     );
 }

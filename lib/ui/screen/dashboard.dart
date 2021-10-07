@@ -14,15 +14,11 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   List<CardDetail> cards = CardData().cards;
-
-
   @override
   Widget build(BuildContext context) {
     return  Container(
-
      child: Column(
         children: [
-
           Expanded(
             flex: 4,
            child: ListView.separated(
@@ -40,7 +36,7 @@ class _DashboardState extends State<Dashboard> {
                     subtitleCard: cards[index].subtitle,
                     isChecked: cards[index].isChecked,// not working
                   ),
-                  onDismissed: ( direction) => dismissItem(context, index, direction),
+                  onDismissed: ( direction ) => dismissItem(context, index, direction),
                 );
              }
             ),

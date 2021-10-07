@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:todoapp/data/Card.dart';
 import 'package:todoapp/model/CardDetail.dart';
 import 'package:todoapp/ui/screen/dashboard.dart';
+import 'package:todoapp/ui/screentwo/page_two.dart';
+import 'package:todoapp/ui/screentwo/shop.dart';
 
 import 'AppBarWidget/my_flexiable_app_bar.dart';
 
@@ -39,16 +41,19 @@ class _TabPageControllerState extends State<TabPageController> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    final Size size = MediaQuery.of(context).size;
+    return SafeArea(
+    child:DefaultTabController(
         length: 4,
         child: Scaffold(
+          backgroundColor: Colors.black,
           body: NestedScrollView(
             controller: _scrollViewController,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled){
             return<Widget> [
                   SliverAppBar(
-                    shadowColor: Colors.black,
-                    backgroundColor: Colors.teal,
+                    shadowColor: Colors.blueGrey,
+                    backgroundColor: Colors.black,
                     title: Text('STREAMSOUND'),
                     leading: IconButton(onPressed: (){}, icon: Icon(Icons.menu)),
                     actions: [
@@ -69,9 +74,10 @@ class _TabPageControllerState extends State<TabPageController> with SingleTicker
                 children: <Widget>
                 [
                   Dashboard(),
+                  PageTwo(),
                   Dashboard(),
-                  Dashboard(),
-                  Dashboard(),
+                  Shop(),
+
 
                 ]
             ) ,
@@ -82,8 +88,8 @@ class _TabPageControllerState extends State<TabPageController> with SingleTicker
             //color: Colors.black54,
             gradient: LinearGradient(
                 colors: [
-                  Colors.teal,
-                  Colors.lightGreen,
+                  Colors.black,
+                  Colors.black,
                 ],
                 begin: Alignment.center,
                 end: Alignment.bottomRight
@@ -99,27 +105,59 @@ class _TabPageControllerState extends State<TabPageController> with SingleTicker
 
           ),
           child: TabBar(
+            padding: EdgeInsets.all(4.0),
             isScrollable: false,
             indicatorSize: TabBarIndicatorSize.tab,
-            indicatorWeight: 6,
+            indicatorWeight: 1,
             indicator: BoxDecoration(
+              border: Border.all(
+                color: Colors.blue,
+                width: 1
+              ),
               boxShadow:[
+                BoxShadow(
+                  color: Colors.blue.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 6,
+                  offset: Offset(4, 4), // changes position of shadow
+                ),
                 BoxShadow(
                   color: Colors.black.withOpacity(0.5),
                   spreadRadius: 1,
                   blurRadius: 6,
-                  offset: Offset(7, 1), // changes position of shadow
+                  offset: Offset(-4, -4), // changes position of shadow
                 ),
               ],
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(5),
               color: Colors.black38,
             ),
             tabs:
             [
-              Tab(icon:Icon(Icons.wifi_rounded,size: 20.0,color: Colors.greenAccent,),),
-              Tab(icon:Icon(Icons.account_box_sharp,color: Colors.redAccent,),),
-              Tab(icon:Icon(Icons.app_registration,color: Colors.yellowAccent),),
-              Tab(icon:Icon(Icons.view_list,color: Colors.lightBlue),),
+              Tab(
+                icon:Icon(
+                Icons.wifi_rounded,
+                size: 20.0,
+                color: Colors.greenAccent,
+                 ),
+              ),
+              Tab(
+                icon:Icon(
+                  Icons.account_box_sharp,
+                  color: Colors.redAccent,
+                ),
+              ),
+              Tab(
+                icon:Icon(
+                    Icons.app_registration,
+                    color: Colors.yellowAccent
+                ),
+              ),
+              Tab(
+                icon:Icon(
+                    Icons.view_list,
+                    color: Colors.lightBlue
+                ),
+              ),
             ],
           ),
           ),
@@ -136,6 +174,7 @@ class _TabPageControllerState extends State<TabPageController> with SingleTicker
             child: Icon(Icons.add),
           ),
         ),
+    ),
         );
   }
 }

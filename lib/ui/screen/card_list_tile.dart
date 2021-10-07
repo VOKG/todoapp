@@ -16,28 +16,28 @@ class CardListTitle extends StatelessWidget {
     return SafeArea(
       child: Container(
         margin: EdgeInsets.only(left: 10, top: 2, right: 10, bottom: 1),
-        decoration: BoxDecoration(
-            //color: Colors.black54,
-            gradient: LinearGradient(
-                colors: [
-                  Colors.teal,
-                  Colors.lightGreen,
-                ],
-                begin: Alignment.center,
-                end: Alignment.bottomRight
-            ),
+        decoration:
+        BoxDecoration(      border:  Border.all(
+            color: Colors.blue,
+            width: 1
+        ),       //color: Colors.black54,
+            color: Colors.black,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.4),
+              color: Colors.black,
               spreadRadius: 1,
-              blurRadius: 3,
-              offset: Offset(2, 9), // changes position of shadow
+              blurRadius: 15.0,
+              offset: Offset(4.0, 4.0), // changes position of shadow
+            ),
+            BoxShadow(
+              color: Colors.blue.shade500,
+              spreadRadius: 1,
+              blurRadius: 15.0,
+              offset: Offset(-4.0, -4.0), // changes position of shadow
             ),
           ],
-
           ),
-
-      child: ListTitleUi(subtitleCard,titleCard,isChecked),
+      child: CardView(subtitleCard,titleCard,isChecked),
       ),
     );
   }
