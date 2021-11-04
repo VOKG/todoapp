@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class AvatarUser extends StatelessWidget {
-Widget image = Image.network('assets/ava.jpeg');
+Widget image = Image.file(File('assets/ava.jpeg'));
 
   @override
   Widget build(BuildContext context) {

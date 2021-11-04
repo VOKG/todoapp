@@ -1,47 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/res/values/colors.dart';
+import 'package:todoapp/data/Card.dart';
+import 'package:todoapp/model/CardDetail.dart';
+import 'package:todoapp/ui/screen/widget/Utils.dart';
+import 'package:todoapp/ui/screen/widget/dismissible_widget.dart';
 
 import 'card_list_tile.dart';
 
 class Dashboard extends StatefulWidget {
+  const Dashboard({Key? key}) : super(key: key);
   @override
   _DashboardState createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
-  final List<CardDetail> cards = [
-    CardDetail(title: 'Map Tutorial', subtitle: 'Basic',isChecked:false),
-    CardDetail(title: 'Provider', subtitle: 'Intermediate',isChecked:false),
-    CardDetail(title: 'Fold Tutorial', subtitle: 'Basic',isChecked:false),
-    CardDetail(title: 'Cubit', subtitle: 'Intermediate', isChecked:false),
-  ];
-int index=0;
+  List<CardDetail> cards = CardData().cards;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: black,
-      body: Column(
+    return  Container(
+     child: Column(
         children: [
           Expanded(
-            flex: 3,
-
-           child: ListView.builder(
+            flex: 4,
+           child: ListView.separated(
               itemCount: cards.length,
-              itemBuilder: (context, index) => Dismissible(
-                key: key,
-                child:  CardListTile(
-                titleCard: cards[index].title,
-                subtitleCard: cards[index].subtitle,
-                isChecked: cards[index].isChecked,
-              ),
-                onDismissed: (){
-                  setState(() {
-                    cards.removeAt(index);
-                  });
-                },
-              ),
+              separatorBuilder: (context, index) =>
+                  Divider(
+                    height: 4,
+                  ),
+             itemBuilder:(context, index){
+                final itemList = cards[index];
+                return  DismissibleWidget(
+                  item: itemList,
+                  child:CardListTitle(
+                    titleCard: cards[index].title,
+                    subtitleCard: cards[index].subtitle,
+                    isChecked: cards[index].isChecked,// not working
+                  ),
+                  onDismissed: ( direction ) => dismissItem(context, index, direction),
+                );
+             }
             ),
           ),
+
           Expanded(
             flex: 0,
             child: Row(
@@ -56,21 +56,7 @@ int index=0;
                     setState(() {});
                   },
                 ),
-                ElevatedButton(
-                  child: Text('Shuffle Cards'),
-                  onPressed: () {
 
-
-                  setState(() {
-                    deleteCard();
-                  });
-
-
-                    //TODO: Shuffle all cards and change the order of them in the UI
-
-
-                  },
-                )
               ],
             ),
           )
@@ -78,20 +64,29 @@ int index=0;
       ),
     );
   }
-  void deleteCard(){
-    if(  cards[index].isChecked = true){
+  void dismissItem(
+      BuildContext context,
+      int index,
+      DismissDirection direction,
+      ) {
+    setState(() {
       cards.removeAt(index);
+    });
+
+    switch (direction) {
+      case DismissDirection.endToStart:
+        Utils.showSnackBar(context, 'Chat has been deleted');
+        break;
+      case DismissDirection.startToEnd:
+        Utils.showSnackBar(context, 'Chat has been archived');
+        break;
+      default:
+        break;
     }
-
   }
+
+
+
 }
 
 
-
-class CardDetail {
-  String title;
-  String subtitle;
-  bool isChecked;
-
-  CardDetail({required this.title, required this.subtitle,required this.isChecked});
-}

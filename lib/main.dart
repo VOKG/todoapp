@@ -1,6 +1,6 @@
+
 import 'package:flutter/material.dart';
-import 'package:todoapp/ui/screen/dashboard.dart';
-import 'package:todoapp/ui/screen/screen_menu.dart';
+import 'package:todoapp/ui/tab_page_controller.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,12 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-
-        primarySwatch: Colors.red,
-      ),
-      home: Dashboard(),
+      theme: ThemeData(),
+      home:TabPageController(),
     );
   }
 }
