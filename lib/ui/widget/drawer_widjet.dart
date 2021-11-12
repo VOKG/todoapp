@@ -4,8 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:todoapp/res/values/styles.dart';
 import 'package:todoapp/state/user_preference.dart';
 
+
 Widget myDrawer(BuildContext context){
-  final userPreferences = Provider.of<UserPreference>(context);
+
   return Drawer(
     child: Container(
      color: Theme.of(context).accentColor,
@@ -23,18 +24,6 @@ Widget myDrawer(BuildContext context){
               )
       ),
 
-          ListTile(
-            leading: Icon(
-          Theme.of(context).brightness == Brightness.light
-          ? Icons.brightness_4
-              : Icons.brightness_high),
-            title: Text('brightness',style: TextStyle(fontSize: 20),),
-            onTap: (){
-              Theme.of(context).brightness == Brightness.light
-                  ? userPreferences.changePreferences(2)
-                  : userPreferences.changePreferences(1);
-            },
-          ),
           CustomListTitle(Icons.person, 'Profile', ()=>{}),
           CustomListTitle(Icons.notifications, 'Notifications', ()=>{}),
           CustomListTitle(Icons.settings, 'Settings', ()=>{}),

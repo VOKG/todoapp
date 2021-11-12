@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 enum preferences { SystemPreference, Light, Dark }
-
+// TODO: https://youtu.be/6YuQEVN6j-g
 class UserPreference with ChangeNotifier {
   bool systemPreferenceSwitch = true;
   bool lightSwitch = false;
@@ -35,6 +35,6 @@ class UserPreference with ChangeNotifier {
         break;
       default:
     }
-    notifyListeners();
+
   }
 }

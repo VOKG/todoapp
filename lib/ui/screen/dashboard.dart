@@ -71,7 +71,6 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Theme.of(context).accentColor,
         child: Column(
           children: [
             Expanded(flex: 4,
@@ -81,11 +80,9 @@ class _DashboardState extends State<Dashboard> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black,
         onPressed: _addButton,
         child: Icon(
           Icons.add,
-          color: Colors.greenAccent,
         ),
       ),
     );
@@ -102,10 +99,10 @@ class _DashboardState extends State<Dashboard> {
             //Делитель
             Divider(
               height: 1,
-              color: Colors.black,
+
             ),
         itemBuilder: (context, index) {
-          final itemList =itemsData[index];
+          final itemList = itemsData[index];
           // виджет удаления и сохранения
           return DismissibleWidget(
             item: itemList,
@@ -113,6 +110,7 @@ class _DashboardState extends State<Dashboard> {
             child:itemsData[index],
             onDismissed: (direction) => dismissItem(context, index, direction),
           );
-        });
+        }
+        );
   }
 }

@@ -4,6 +4,9 @@ import 'package:todoapp/res/values/styles.dart';
 import 'package:todoapp/ui/screen/dashboard.dart';
 import 'package:todoapp/ui/widget/drawer_widjet.dart';
 import 'AppBarWidget/my_flexiable_app_bar.dart';
+import 'package:todoapp/res/theme/theme_manager.dart';
+
+
 
 class TabPageController extends StatefulWidget {
   TabPageController({Key? key}) : super(key: key);
@@ -42,7 +45,6 @@ class _TabPageControllerState extends State<TabPageController>
         child: Scaffold(
           drawer: myDrawer(context),
           key: _scaffoldKey,
-          backgroundColor: Theme.of(context).accentColor,
           body: NestedScrollView(
             controller: _scrollViewController,
             headerSliverBuilder:
@@ -52,15 +54,10 @@ class _TabPageControllerState extends State<TabPageController>
                   shadowColor: COLOR_YELLOW,
                   backgroundColor: COLOR_INDIGO_500,
                   title: Text('TodoCardManager',
-                    style: TextStyle(
-                      color:Colors.black87,
-                      fontSize: 22.0,
-                    ),
+                    style:Theme.of(context).textTheme.headline6,
                   ),
                   actions: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.access_alarms_rounded)),
+
                   ],
                   forceElevated: innerBoxIsScrolled,
                   expandedHeight: 120.0,
