@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/res/values/colors.dart';
+import 'package:todoapp/res/values/constants_colors.dart';
+import 'package:todoapp/res/values/styles.dart';
 
 class SecondScreen extends StatelessWidget {
   final String title;
@@ -10,16 +11,7 @@ SecondScreen({required this.title, required this.subtitle});
   Widget build(BuildContext context) {
     return Scaffold(
       body:Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [
-                  Colors.teal,
-                  Colors.lightGreen,
-                ],
-                begin: Alignment.bottomRight,
-                end: Alignment.center
-            )
-        ),
+        decoration:myBoxDecoration04(),
       child: Column(
         children: [
           Center(

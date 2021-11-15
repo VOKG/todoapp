@@ -14,11 +14,8 @@ class MyFlexiableAppBar extends StatelessWidget {
     return Container(
       padding:EdgeInsets.only(top: statusBarHeigth),
       child: Center(
-        child:  Text('SliverBarHello',
-          style: TextStyle(
-            color:Colors.yellow,
-            fontSize: 25.0,
-          ),
+        child:  Text('Task:100',
+            style:Theme.of(context).textTheme.headline6
         ),
       ),
     );
