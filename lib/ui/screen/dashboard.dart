@@ -70,6 +70,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
       body: Container(
         child: Column(
           children: [
@@ -81,6 +82,7 @@ class _DashboardState extends State<Dashboard> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addButton,
+        backgroundColor:Theme.of(context).primaryColorLight,
         child: Icon(
           Icons.add,
         ),
@@ -99,7 +101,6 @@ class _DashboardState extends State<Dashboard> {
             //Делитель
             Divider(
               height: 1,
-
             ),
         itemBuilder: (context, index) {
           final itemList = itemsData[index];

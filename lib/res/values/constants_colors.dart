@@ -32,3 +32,7 @@ const COLOR_ACTION_BUTTON = Color.fromRGBO(39, 152, 30, 0.7843137254901961);
 const COLOR_ACTION_BUTTON_DARK = Color.fromRGBO(255, 95, 14, 1.0);
 const COLOR_WHITE_DIVIDER =  Color.fromRGBO(0, 0, 0, 1.0);
 const COLOR_BLACK_DIVIDER =  Color.fromRGBO(255, 255, 255, 1.0);
+const COLOR_BL_SCAFFOLD =  Color.fromRGBO(30, 33, 52, 1.0);
+const COLOR_WH_APPBAR =  Color.fromRGBO(238, 85, 7, 1.0);
+const COLOR_BL_APPBAR =  Color.fromRGBO(44, 194, 150, 1.0);
+const COLOR_TEXT_WH =  Color.fromRGBO(255, 255, 255, 1.0);

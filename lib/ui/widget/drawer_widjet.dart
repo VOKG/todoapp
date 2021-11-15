@@ -9,19 +9,18 @@ Widget myDrawer(BuildContext context){
 
   return Drawer(
     child: Container(
-     color: Theme.of(context).accentColor,
+      color:Theme.of(context).scaffoldBackgroundColor,
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: myBoxDecoration03(),
-              child:Container(
-                height: 10,
-                color: Theme.of(context).accentColor,
-                child: Text(
+            padding:  EdgeInsets.fromLTRB(10, 20, 10,20),
+           // EdgeInsets.zero,
+            decoration: myBoxDecoration03(context),
+              child: Text(
                   'LOGO',
-                  style: TextStyle(fontSize: 25),
+                  style:Theme.of(context).textTheme.headline6,
                 ),
-              )
+
       ),
 
           CustomListTitle(Icons.person, 'Profile', ()=>{}),
@@ -62,13 +61,11 @@ class CustomListTitle extends StatelessWidget{
             children: [
               Row(
                 children: [
-                  Icon(icon,color: Colors.black87,),
+                  Icon(icon),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(text,
-                        style:TextStyle(
-                            color:Colors.black87,
-                            fontSize: 16.0)
+                        style:Theme.of(context).textTheme.headline2
                     ),
                   ),
                 ],

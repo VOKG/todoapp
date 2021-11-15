@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/res/theme/config.dart';
 import 'package:todoapp/res/values/constants_colors.dart';
 import 'package:todoapp/res/values/styles.dart';
 import 'package:todoapp/ui/screen/dashboard.dart';
@@ -51,14 +52,18 @@ class _TabPageControllerState extends State<TabPageController>
                 (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
                 SliverAppBar(
-                  shadowColor: COLOR_YELLOW,
-                  backgroundColor: COLOR_INDIGO_500,
-                  title: Text('TodoCardManager',
+                  title: Text('Todo Card Manager',
                     style:Theme.of(context).textTheme.headline6,
                   ),
                   actions: [
 
+                    IconButton(
+                      icon: const Icon(Icons.brightness_4),
+                      onPressed: () => currentTheme.toggleTheme(),
+                    )
+
                   ],
+                  backgroundColor: Theme.of(context).primaryColorLight,
                   forceElevated: innerBoxIsScrolled,
                   expandedHeight: 120.0,
                   pinned: true,
@@ -79,31 +84,28 @@ class _TabPageControllerState extends State<TabPageController>
           bottomNavigationBar: Container(
             decoration:myBoxDecoration02(context),
             child: TabBar(
-              padding: EdgeInsets.all(4.0),
+              //padding: EdgeInsets.all(4.0),
               isScrollable: false,
-              indicatorSize: TabBarIndicatorSize.tab,
-              indicatorWeight: 1,
-              indicator:myBoxDecoration01(),
+             // indicatorSize: TabBarIndicatorSize.tab,
+             // indicatorWeight: 1,
+              //indicator:myBoxDecoration01(context),
+              labelColor: Theme.of(context).bottomAppBarColor,
+              unselectedLabelColor:  Theme.of(context).backgroundColor,
               tabs: [
                 Tab(
                   icon: Icon(
-                    Icons.wifi_rounded,
-                    size: 20.0,
-                    color: Colors.greenAccent,
-                  ),
+                    Icons.wifi_rounded),
                 ),
                 Tab(
                   icon: Icon(
-                    Icons.account_box_sharp,
-                    color: Colors.greenAccent,
-                  ),
+                    Icons.account_box_sharp),
                 ),
                 Tab(
                   icon:
-                      Icon(Icons.app_registration, color: Colors.greenAccent),
+                      Icon(Icons.app_registration)
                 ),
                 Tab(
-                  icon: Icon(Icons.view_list, color: Colors.greenAccent),
+                  icon: Icon(Icons.view_list),
                 ),
               ],
             ),

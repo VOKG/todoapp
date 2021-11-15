@@ -15,10 +15,7 @@ class MyFlexiableAppBar extends StatelessWidget {
       padding:EdgeInsets.only(top: statusBarHeigth),
       child: Center(
         child:  Text('Task:100',
-          style: TextStyle(
-            color:Colors.black87,
-            fontSize: 35.0,
-          ),
+            style:Theme.of(context).textTheme.headline6
         ),
       ),
     );

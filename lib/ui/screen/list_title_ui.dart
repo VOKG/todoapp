@@ -35,26 +35,22 @@ class _CardView extends State<CardView> {
       leading:
      MyAvatar(),
      // CircleAvatar(backgroundImage:ava, radius: 40,),
-
       title: Text(
         title,
-        style: TextStyle(
-            color: COLOR_WHITE,
-            fontWeight: FontWeight.bold
-        ),
+        style:Theme.of(context).textTheme.headline3,
       ),
       subtitle: Row(
         children: [
           Icon(
             Icons.arrow_drop_down_circle,
-            color: Colors.black38,
+            color: Theme.of(context).primaryColor,
           ),
           SizedBox(
             width: 10,
           ),
           Text(
             subtitle,
-            style: TextStyle(color: Colors.white),
+          style:Theme.of(context).textTheme.headline2,
           ),
 
         ],

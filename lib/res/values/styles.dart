@@ -1,13 +1,13 @@
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'constants_colors.dart';
 
- BoxDecoration myBoxDecoration01(){
+ BoxDecoration myBoxDecoration01(BuildContext context){
   return BoxDecoration(
-   border: Border.all(color:  COLOR_INDIGO_500, width: 1),
+   border: Border.all(
+       color: Theme.of(context).primaryColor,
+       width: 1),
    boxShadow: [
     BoxShadow(
      blurRadius:1,
@@ -21,17 +21,17 @@ import 'constants_colors.dart';
     ),
    ],
    borderRadius: BorderRadius.circular(5),
-   color:  COLOR_INDIGO_500,
+   color:  Theme.of(context).bottomAppBarColor,
   );
 }
 
 BoxDecoration myBoxDecoration02(BuildContext context){
  return  BoxDecoration(
   //color: Colors.black54,
-  color: Theme.of(context).accentColor,
+   color:Theme.of(context).primaryColorLight,
   boxShadow: [
    BoxShadow(
-    color: Colors.black.withOpacity(0.4),
+    color: Colors.black.withOpacity(0.1),
     spreadRadius: 5,
     blurRadius: 3,
     offset: Offset(2, 9), // changes position of shadow
@@ -40,11 +40,11 @@ BoxDecoration myBoxDecoration02(BuildContext context){
  );
 }
 
-BoxDecoration myBoxDecoration03(){
+BoxDecoration myBoxDecoration03(BuildContext context){
   return BoxDecoration(
       gradient: LinearGradient(
           colors: [
-           Colors.black,
+           Theme.of(context).primaryColor,
            Colors.white10,
           ],
           begin: Alignment.bottomRight,
