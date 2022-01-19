@@ -1,26 +1,27 @@
-
 import 'package:flutter/material.dart';
-import 'package:todoapp/data/Card.dart';
-import 'package:todoapp/model/CardDetail.dart';
+import 'package:todoapp/res/theme/config.dart';
+import 'package:todoapp/res/values/styles.dart';
 import 'package:todoapp/ui/screen/dashboard.dart';
-import 'package:todoapp/ui/screentwo/page_two.dart';
-import 'package:todoapp/ui/screentwo/shop.dart';
-
+import 'package:todoapp/ui/screen/list_title_ui.dart';
+import 'package:todoapp/ui/widget/drawer_widjet.dart';
 import 'AppBarWidget/my_flexiable_app_bar.dart';
 
+
+
+
 class TabPageController extends StatefulWidget {
-   TabPageController({Key? key}) : super(key: key);
+ const TabPageController({Key? key}) : super(key: key);
 
   @override
   _TabPageControllerState createState() => _TabPageControllerState();
 }
 
-class _TabPageControllerState extends State<TabPageController> with SingleTickerProviderStateMixin {
+class _TabPageControllerState extends State<TabPageController>
+    with SingleTickerProviderStateMixin {
 
   late TabController _tabController;
   late ScrollController _scrollViewController;
-
-  List<CardDetail> cards = CardData().cards;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 
   @override
@@ -28,7 +29,6 @@ class _TabPageControllerState extends State<TabPageController> with SingleTicker
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
     _scrollViewController = ScrollController();
-
   }
 
   @override
@@ -36,146 +36,92 @@ class _TabPageControllerState extends State<TabPageController> with SingleTicker
     _tabController.dispose();
     _scrollViewController.dispose();
     super.dispose();
-
   }
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+
     return SafeArea(
-    child:DefaultTabController(
+      child: DefaultTabController(
         length: 4,
         child: Scaffold(
-          backgroundColor: Colors.black,
+          drawer: myDrawer(context),
+          key: _scaffoldKey,
           body: NestedScrollView(
             controller: _scrollViewController,
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled){
-            return<Widget> [
-                  SliverAppBar(
-                    shadowColor: Colors.blueGrey,
-                    backgroundColor: Colors.black,
-                    title: Text('STREAMSOUND'),
-                    leading: IconButton(onPressed: (){}, icon: Icon(Icons.menu)),
-                    actions: [
-                      IconButton(onPressed: (){},
-                          icon: Icon(Icons.access_alarms_rounded)),],
-                    forceElevated: innerBoxIsScrolled ,
-                    expandedHeight: 120.0,
-                    pinned: true,
-                    floating: true,
-                    flexibleSpace: FlexibleSpaceBar(
-                      background: MyFlexiableAppBar(),
-                    ) ,
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
+              return <Widget>[
+                SliverAppBar(
+                  title: Text('Todo Card Manager',
+                    style:Theme.of(context).textTheme.headline6,
+                  ),
+                  actions: [
 
-              ),
-            ];
-          },
-            body:TabBarView(
-                children: <Widget>
-                [
-                  Dashboard(),
-                  PageTwo(),
-                  Dashboard(),
-                  Shop(),
+                    IconButton(
+                      icon: const Icon(Icons.brightness_4),
+                      onPressed: () => currentTheme.toggleTheme(),
+                    ),
+                    IconButton(
+                        onPressed: (){
+                          _scaffoldKey.currentState!.showSnackBar(
+                              SnackBar(content: Text('12345'),)
+                          );
+                        },
+                        icon: Icon(Icons.brightness_5_rounded))
 
-
-                ]
-            ) ,
-          ),
-          bottomNavigationBar:Container(
-
-          decoration:BoxDecoration(
-            //color: Colors.black54,
-            gradient: LinearGradient(
-                colors: [
-                  Colors.black,
-                  Colors.black,
-                ],
-                begin: Alignment.center,
-                end: Alignment.bottomRight
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.4),
-                spreadRadius: 1,
-                blurRadius: 3,
-                offset: Offset(2, 9), // changes position of shadow
-              ),
-            ],
-
-          ),
-          child: TabBar(
-            padding: EdgeInsets.all(4.0),
-            isScrollable: false,
-            indicatorSize: TabBarIndicatorSize.tab,
-            indicatorWeight: 1,
-            indicator: BoxDecoration(
-              border: Border.all(
-                color: Colors.blue,
-                width: 1
-              ),
-              boxShadow:[
-                BoxShadow(
-                  color: Colors.blue.withOpacity(0.5),
-                  spreadRadius: 1,
-                  blurRadius: 6,
-                  offset: Offset(4, 4), // changes position of shadow
+                  ],
+                  backgroundColor: Theme.of(context).primaryColorLight,
+                  forceElevated: innerBoxIsScrolled,
+                  expandedHeight: 120.0,
+                  pinned: true,
+                  floating: true,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: MyFlexiableAppBar(),
+                  ),
                 ),
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.5),
-                  spreadRadius: 1,
-                  blurRadius: 6,
-                  offset: Offset(-4, -4), // changes position of shadow
+              ];
+            },
+            body: TabBarView(children: <Widget>[
+              Dashboard(),
+              Dashboard(),
+              Dashboard(),
+              Dashboard(),
+            ]),
+          ),
+          bottomNavigationBar: Container(
+            decoration:myBoxDecoration02(context),
+            child: TabBar(
+              //padding: EdgeInsets.all(4.0),
+              isScrollable: false,
+             // indicatorSize: TabBarIndicatorSize.tab,
+             // indicatorWeight: 1,
+              //indicator:myBoxDecoration01(context),
+              labelColor: Theme.of(context).bottomAppBarColor,
+              unselectedLabelColor:  Theme.of(context).backgroundColor,
+              tabs: [
+                Tab(
+                  icon: Icon(
+                    Icons.wifi_rounded),
+                ),
+                Tab(
+                  icon: Icon(
+                    Icons.account_box_sharp),
+                ),
+                Tab(
+                  icon:
+                      Icon(Icons.app_registration)
+                ),
+                Tab(
+                  icon: Icon(Icons.view_list),
                 ),
               ],
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.black38,
             ),
-            tabs:
-            [
-              Tab(
-                icon:Icon(
-                Icons.wifi_rounded,
-                size: 20.0,
-                color: Colors.greenAccent,
-                 ),
-              ),
-              Tab(
-                icon:Icon(
-                  Icons.account_box_sharp,
-                  color: Colors.redAccent,
-                ),
-              ),
-              Tab(
-                icon:Icon(
-                    Icons.app_registration,
-                    color: Colors.yellowAccent
-                ),
-              ),
-              Tab(
-                icon:Icon(
-                    Icons.view_list,
-                    color: Colors.lightBlue
-                ),
-              ),
-            ],
           ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: (){
-              cards.add(
-                  CardDetail(
-                      title: 'Unit Testing',
-                      subtitle: 'Intermediate',
-                      isChecked:false));
-              setState(() {}
-              );
-            },
-            child: Icon(Icons.add),
-          ),
+
         ),
-    ),
-        );
+      ),
+    );
   }
 }
 /* appBar: AppBar(

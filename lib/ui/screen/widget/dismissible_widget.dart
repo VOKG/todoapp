@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/res/values/colors.dart';
+
+import 'package:todoapp/res/values/styles.dart';
 
 class DismissibleWidget<T> extends StatelessWidget {
   final T item;
@@ -30,19 +31,11 @@ class DismissibleWidget<T> extends StatelessWidget {
   );
 
   Widget buildSwipeActionRight() => Container(
-    decoration: BoxDecoration(
-      color: Colors.white70,
-      borderRadius: BorderRadius.only(
 
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20)
-      ),
-
-    ),
+    decoration: myBoxDecorationDismissible(),
 
     alignment: Alignment.centerRight,
+
     padding:  EdgeInsets.only(left: 25, top: 1, right: 10, bottom: 1),
 
     child: Icon(Icons.delete_forever, color: Colors.black87, size: 32),
