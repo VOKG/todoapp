@@ -12,6 +12,7 @@ class CustomTheme with ChangeNotifier{
   ThemeMode get currentTheme => _isDarkTheme ? ThemeMode.dark : ThemeMode.light;
 
  toggleTheme() {
+
     _isDarkTheme = !_isDarkTheme;
 
     notifyListeners();

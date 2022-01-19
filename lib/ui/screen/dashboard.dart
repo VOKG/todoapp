@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/data/Card.dart';
+import 'package:provider/provider.dart';
 import 'package:todoapp/data/Data.dart';
 import 'package:todoapp/model/CardDetail.dart';
-import 'package:todoapp/res/values/constants_colors.dart';
+import 'package:todoapp/state/tabBarChange.dart';
+import 'package:todoapp/ui/screen/list_title_ui.dart';
 import 'package:todoapp/ui/screen/widget/Utils.dart';
 import 'package:todoapp/ui/screen/widget/dismissible_widget.dart';
-import 'card_list_tile.dart';
+
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -14,24 +15,55 @@ class Dashboard extends StatefulWidget {
   _DashboardState createState() => _DashboardState();
 }
 
+
 class _DashboardState extends State<Dashboard> {
+
+
   ScrollController controller = ScrollController();
 
   List<Widget> itemsData = [];
 
-  void getDataListCard() {
-    List<dynamic> listData = DATA_CARD_DETAIL;
-    List<Widget> listItems = [];
-    listData.forEach((data) {
-      listItems.add(CardListTitle(
-          titleCard: data["title"],
-          subtitleCard: data["subtitle"],
-          isChecked: data["isChecked"]));
-      });
-    setState(() {
-      itemsData = listItems;
-    });
+
+  @override
+  void initState() {
+    super.initState();
+
+
+// иницилизация списка
+
+
+   // getDataListCard(list);
   }
+  @override
+  void didChangeDependencies() {
+    super. didChangeDependencies();
+
+  }
+
+
+  getDataListCard(){
+
+   // final listDBTodo = Provider.of<DataChange>(context,listen: false).data;
+
+    List<dynamic> listData = DATA_CARD_DETAIL;
+
+    final list = listData.map(
+            (data) =>
+            CardModel(
+                title: data["title"],
+                subtitle: data["subtitle"],
+                isChecked: data["isChecked"]
+
+            )
+    ).toList();
+
+  setState(() {
+    itemsData = list;
+  });
+  
+
+  }
+
 
   // функция добавления и удаления
   void dismissItem(
@@ -42,6 +74,8 @@ class _DashboardState extends State<Dashboard> {
     setState(() {
       itemsData.removeAt(index);
     });
+
+    //context.read<DataChange>().getData()
 
     switch (direction) {
       case DismissDirection.endToStart:
@@ -55,63 +89,104 @@ class _DashboardState extends State<Dashboard> {
     }
   }
 
-  void _addButton() {
+  void addTaskList() {
+    CardModel cardTask = CardModel(
+        title: 'title ${itemsData.length}',
+        subtitle: 'subtitle ${itemsData.length}',
+        isChecked:'isChecked ${itemsData.length}'
+    );
+setState((){
+  itemsData.add(cardTask);
+});
 
-    setState(() {});
+
   }
 
-  @override
-  void initState() {
-    super.initState();
 
-    getDataListCard();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
-      body: Container(
-        child: Column(
-          children: [
-            Expanded(flex: 4,
-                child: buildListViewTask(controller, itemsData)
+    // DataChange dataChange = Provider.of<DataChange>(context);
+    //SafeArena
+    Provider.of<DataChange>(context,listen: true).data;
+
+         return Scaffold(
+            backgroundColor: Theme
+                .of(context)
+                .scaffoldBackgroundColor,
+            body: Container(
+              child: Column(
+                children: [
+                  Expanded(flex: 4,
+                      child: ListViewTask()
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addButton,
-        backgroundColor:Theme.of(context).primaryColorLight,
-        child: Icon(
-          Icons.add,
-        ),
-      ),
-    );
+
+            floatingActionButton: FloatingActionButton(
+              onPressed:addTaskList,
+           //context.read<DataChange>();
+                // Provider.of<DataChange>(context,listen: true).addTaskList();
+
+              backgroundColor: Theme
+                  .of(context)
+                  .primaryColorLight,
+              child: Icon(
+                Icons.add,
+              ),
+
+            ),
+
+          );
+
   }
 
 
-  //method generation list
-  ListView  buildListViewTask(ScrollController controller, List itemsData ) {
-    return ListView.separated(
-        // длина списка листа данных
-      controller: controller,
-        itemCount: itemsData.length,
-        separatorBuilder: (context, index) =>
+
+}
+
+class ListViewTask extends StatefulWidget{
+  const ListViewTask({Key? key}) : super(key: key);
+
+  @override
+  _ListViewTaskState createState() => _ListViewTaskState();
+}
+
+class _ListViewTaskState extends State<ListViewTask > {
+
+@override
+  Widget build(BuildContext context) {
+    return Consumer<DataChange>(
+        builder: (context, dataChange, child) {
+       return ListView.separated(
+          // длина списка листа данных
+           // controller: controller,
+            itemCount: dataChange.getDataReadMap().length,
+            separatorBuilder: (context, index) =>
             //Делитель
             Divider(
               height: 1,
             ),
-        itemBuilder: (context, index) {
-          final itemList = itemsData[index];
-          // виджет удаления и сохранения
-          return DismissibleWidget(
-            item: itemList,
-            // контейнер для содержимого
-            child:itemsData[index],
-            onDismissed: (direction) => dismissItem(context, index, direction),
-          );
-        }
+            itemBuilder: (context, index) {
+            //  final itemList =  dataChange.getDataReadMap()[index];
+              return  CardView(index);
+
+              // виджет удаления и сохранения
+            /*  return DismissibleWidget(
+                item: itemList,
+                // контейнер для содержимого
+                child: itemsDataget[index],
+                onDismissed: (direction) => dismissItem(context, index, direction),
+              );*/
+            }
         );
   }
+  );
+
+  }
+//method generation list
+
 }
+
+

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/res/values/constants_colors.dart';
 import 'package:todoapp/res/values/styles.dart';
 
 class SecondScreen extends StatelessWidget {

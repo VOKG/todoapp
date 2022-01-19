@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todoapp/res/theme/config.dart';
 import 'package:todoapp/res/theme/custom_theme.dart';
+import 'package:todoapp/state/tabBarChange.dart';
 import 'package:todoapp/ui/tab_page_controller.dart';
 
 class MyAppProviderSet extends StatefulWidget {
@@ -17,11 +19,21 @@ class _MyAppProviderSetStateState extends State<MyAppProviderSet> {
     currentTheme.addListener(() {
       setState(() {});
     });
+    dataChange.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MyApp();
+    return MultiProvider(
+        providers: [
+      ChangeNotifierProvider(create: (_) => DataChange(),),
+         // ChangeNotifierProvider(create: (_) =>  CustomTheme(),)
+
+    ],
+        child: MyApp(),
+    );
   }
 }
 

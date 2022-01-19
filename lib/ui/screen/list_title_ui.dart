@@ -1,33 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/res/values/constants_colors.dart';
+import 'package:provider/provider.dart';
+import 'package:todoapp/model/CardDetail.dart';
 import 'package:todoapp/res/values/styles.dart';
+import 'package:todoapp/state/tabBarChange.dart';
 import 'package:todoapp/ui/screen/second_screen.dart';
 
 
-class CardView extends StatefulWidget{
-  CardView(this.subtitleCard,this.titleCard,this.isChecked);
- late String titleCard;
-  late String subtitleCard;
-   late String isChecked;
-
-
-  @override
-  _CardView createState() => _CardView(this.titleCard,this.subtitleCard,this.isChecked);
-}
-class _CardView extends State<CardView> {
-
-  _CardView(this.subtitle,this.title,this.isChecked);
-
-  late String title;
-  late final String subtitle;
-
-  late String isChecked;
-
-
+class CardView extends StatelessWidget{
+  CardView(this.index);
+int index =0;
   @override
   Widget build(BuildContext context) {
 
-    return ListTile(
+    return Consumer<DataChange>(
+
+      builder:(context,dataChange,child)=>
+
+      ListTile(
       contentPadding: EdgeInsets.symmetric(
         horizontal: 1.0,
         vertical: 5.0,
@@ -36,7 +25,8 @@ class _CardView extends State<CardView> {
      MyAvatar(),
      // CircleAvatar(backgroundImage:ava, radius: 40,),
       title: Text(
-        title,
+       // dataChange.data[index].title,
+        dataChange.itemsData[index].title,
         style:Theme.of(context).textTheme.headline3,
       ),
       subtitle: Row(
@@ -49,25 +39,32 @@ class _CardView extends State<CardView> {
             width: 10,
           ),
           Text(
-            subtitle,
+            //dataChange.data[index].subtitle,
+            dataChange.itemsData[index].subtitle,
           style:Theme.of(context).textTheme.headline2,
           ),
-
         ],
       ),
+
       onTap: () =>
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => SecondScreen(title: title,subtitle: subtitle,))
+                  builder: (context) =>
+
+                      SecondScreen(
+                        title:dataChange.itemsData[index].title,
+                        subtitle:dataChange.itemsData[index].subtitle,)
+              )
           ),
       isThreeLine: true,
       dense: true,
       trailing: Icon(
         Icons.keyboard_arrow_left,
-        color: Colors.black54,
+        color: Colors.black54,//!!!!!!!!!!!!!!!!!!!!!!!!!
         size: 30.0,
       ),
+      )
 
     );
   }

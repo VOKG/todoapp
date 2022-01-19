@@ -1,8 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:todoapp/res/values/styles.dart';
-import 'package:todoapp/state/user_preference.dart';
+
 
 
 Widget myDrawer(BuildContext context){
@@ -13,8 +12,9 @@ Widget myDrawer(BuildContext context){
       child: ListView(
         children: [
           DrawerHeader(
-            padding:  EdgeInsets.fromLTRB(10, 20, 10,20),
-           // EdgeInsets.zero,
+            padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
+
+           //EdgeInsets.zero,
             decoration: myBoxDecoration03(context),
               child: Text(
                   'LOGO',

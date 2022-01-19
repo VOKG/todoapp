@@ -18,8 +18,6 @@ String isChecked;
       child: Container(
        // margin: EdgeInsets.only(left: 10, top: 2, right: 10, bottom: 1),
       // decoration: myBoxDecorationCardListTitle(),
-
-      child: CardView(subtitleCard,titleCard,isChecked),
       ),
     );
   }
